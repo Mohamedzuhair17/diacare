@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>DiaCare - Blood Sugar Tracker</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#2EAF8F',
+              tealLight: '#E8F8F4',
+              tealSoft: '#D7F3EC',
+              blue: '#4A90E2',
+              bg: '#F5FAFF',
+              badgeGreen: '#EBF8F0',
+              badgeText: '#27AE60',
+              textDark: '#1E293B',
+              textMuted: '#64748B',
+              cardBg: '#FFFFFF'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Font: Plus Jakarta Sans for refined mobile typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #E2E8F0;
+    }
+  </style>
+<style data-purpose="chart-styles">
+    /* Subtle custom styles for SVG chart aesthetics */
+    .chart-line {
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      fill: none;
+    }
+  </style>
+<meta content="mobile_tab" name="shell-type"/><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 text-slate-800 antialiased selection:bg-brand-teal selection:text-white">
+<!-- BEGIN: MobileDeviceFrame -->
+<!-- iPhone 15 Pro scaled viewport container -->
+<main class="w-full max-w-[393px] h-[852px] bg-brand-bg relative overflow-hidden flex flex-col shadow-2xl rounded-none sm:rounded-[48px] border-0 sm:border-[8px] sm:border-slate-800"><div class="flex flex-col w-full pb-28">
+<!-- Top App Bar Navigation -->
+<header class="sticky top-0 z-20 flex items-center justify-between px-5 py-4 bg-surface/90 backdrop-blur-md">
+<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container-lowest shadow-sm text-on-surface hover:bg-surface-container-high transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">My Profile</h1>
+<button aria-label="Profile settings" class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container-lowest shadow-sm text-on-surface hover:bg-surface-container-high transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+</button>
+</header>
+<!-- Scrollable Main Container -->
+<div class="flex flex-col gap-5 px-5 pt-1">
+<!-- User Header Identity Card -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-sm">
+<div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-primary-fixed/20 pointer-events-none blur-2xl"></div>
+<div class="flex items-start gap-4">
+<!-- Avatar with micro-camera badge -->
+<div class="relative shrink-0">
+<div class="w-18 h-18 rounded-full p-0.5 bg-gradient-to-tr from-primary-container to-secondary-container">
+<img class="w-16 h-16 rounded-full object-cover shadow-inner" data-alt="Close-up portrait of Anusri Sen, a warm and friendly 32-year-old South Asian woman with a gentle genuine smile, natural daylight illumination, wearing a casual pastel mint green cardigan against a soft blurred background, clean digital health photography aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu14VaKWV-kOXLy504A8tiMM2Z6euCFAsPYnSySMrmSqL5OGhMgcEgOVQQrqF_LWH6f6N-K_d0XU14YjhCtssMaYykUnVugpUZJXsdV3LeQD6aiyMpVRJfi6vKNOlhgUy5000w6Swo7gQoe10bIlxwOsFxKFSlY7x81_yJuFDzZn21_2ulipR8rkR6PqsfbdrdQHrZdl7RfMbbK2CAZyJdGOYpSa7C6f16r9NZlPSkDtqlIRfVyhCT"/>
+</div>
+<button aria-label="Change photo" class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-on-primary shadow-md hover:scale-105 transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[13px]">photo_camera</span>
+</button>
+</div>
+<!-- Name, Contact & Bio Info -->
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Anusri Sen</h2>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Active Care
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary truncate mt-0.5">anusri@email.com</p>
+<!-- Medical Identity Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mt-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Type 2 Diabetes</span>
+<span class="text-tertiary text-[10px]">•</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Age 32</span>
+<span class="text-tertiary text-[10px]">•</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-medium">Dr. Robert Chen</span>
+</div>
+</div>
+</div>
+<!-- Edit Personal Profile Action Pill -->
+<div class="mt-4 pt-3 border-none flex items-center justify-end">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors active:scale-98" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+<span>Edit Personal Profile</span>
+</button>
+</div>
+</section>
+<!-- Quick Stats Cards (3 Columns) -->
+<section class="grid grid-cols-3 gap-2.5">
+<!-- Target Glucose -->
+<div class="flex flex-col justify-between p-3 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-1.5">
+<span class="w-7 h-7 rounded-full bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Target</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight">90–140</p>
+<p class="font-metric-unit text-metric-unit text-tertiary mt-0.5 truncate">mg/dL Range</p>
+</div>
+</div>
+<!-- Current Weight -->
+<div class="flex flex-col justify-between p-3 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-1.5">
+<span class="w-7 h-7 rounded-full bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[17px]">scale</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Stable</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight">52 <span class="font-label-md text-label-md font-normal text-tertiary">kg</span></p>
+<p class="font-metric-unit text-metric-unit text-tertiary mt-0.5 truncate">Current Weight</p>
+</div>
+</div>
+<!-- Daily Water -->
+<div class="flex flex-col justify-between p-3 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-1.5">
+<span class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">local_drink</span>
+</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Goal</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight">8 <span class="font-label-md text-label-md font-normal text-tertiary">cups</span></p>
+<p class="font-metric-unit text-metric-unit text-tertiary mt-0.5 truncate">Daily Hydration</p>
+</div>
+</div>
+</section>
+<!-- Health Profile & Care Section -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between px-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Health Profile &amp; Care</h3>
+<span class="font-label-sm text-label-sm text-primary font-medium">3 Linked Records</span>
+</div>
+<div class="flex flex-col gap-2 rounded-2xl bg-surface-container-lowest p-2 shadow-sm">
+<!-- Health Profile Item -->
+<button class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-surface-container-low text-left transition-colors active:scale-[0.99] group" type="button">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-primary-fixed/60 text-primary shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">monitoring</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">Health Profile</span>
+<span class="font-body-sm text-body-sm text-tertiary truncate">HbA1c target 6.2%, biometric history</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</button>
+<!-- Doctor & Care Team Item -->
+<button class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-surface-container-low text-left transition-colors active:scale-[0.99] group" type="button">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-secondary-fixed text-secondary shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">medical_services</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Doctor &amp; Care Team</span>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary truncate">Dr. Chen, Clinic access, shared logs</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</button>
+<!-- Medicine Schedule Item -->
+<button class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-surface-container-low text-left transition-colors active:scale-[0.99] group" type="button">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-surface-container text-on-surface-variant shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">medication</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">Medicine Schedule</span>
+<span class="font-body-sm text-body-sm text-tertiary truncate">Metformin 500mg, timings &amp; alerts</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- App Settings & Preferences Section -->
+<section class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface px-1">Settings &amp; Devices</h3>
+<div class="flex flex-col gap-2 rounded-2xl bg-surface-container-lowest p-2 shadow-sm">
+<!-- Reminders & Notifications -->
+<div class="flex items-center gap-3.5 p-3 rounded-xl">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">Reminders &amp; Alarms</span>
+<span class="font-body-sm text-body-sm text-tertiary truncate">Medicine, glucose, hydration alarms</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Connected Devices & Sensors -->
+<button class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-surface-container-low text-left transition-colors active:scale-[0.99] group" type="button">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-surface-container text-secondary shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">bluetooth_connected</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Connected Devices</span>
+<span class="px-1.5 py-0.2 text-[10px] rounded bg-primary-fixed text-on-primary-fixed font-semibold">2 SYNCED</span>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary truncate">Continuous Glucose Monitor, Smart Scale</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</button>
+<!-- Emergency Contact -->
+<button class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-surface-container-low text-left transition-colors active:scale-[0.99] group" type="button">
+<div class="flex items-center justify-center w-11 h-11 rounded-xl bg-error-container/50 text-error shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">emergency</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">Emergency Contact</span>
+<span class="font-body-sm text-body-sm text-tertiary truncate">Rajesh Sen (+91 98765 43210)</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Clinic Reassurance Banner -->
+<div class="flex items-center gap-3 p-4 rounded-2xl bg-secondary-fixed/30 text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0">verified_user</span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant">
+        Your medical data is encrypted with HIPAA-compliant standards and actively synchronized with Dr. Chen’s portal.
+      </p>
+</div>
+<!-- Bottom Actions / Account Controls -->
+<section class="flex flex-col gap-3 pt-2">
+<!-- Export Health Report (PDF) -->
+<button class="w-full h-13 py-3.5 px-4 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+<span>Export Health Report (PDF)</span>
+</button>
+<!-- Log Out Button -->
+<button class="w-full py-3 px-4 rounded-full bg-error-container/40 text-error font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-error-container/70 active:scale-[0.98] transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Log Out</span>
+</button>
+<!-- App version info -->
+<p class="text-center font-label-sm text-label-sm text-tertiary/70 pt-1 pb-2">
+        DiaCare v2.4.1 • Build 8490
+      </p>
+</section>
+</div>
+<!-- Bottom Navigation Bar (Persistent mobile tab rail) -->
+<nav class="fixed bottom-0 left-0 right-0 z-30 max-w-[393px] mx-auto bg-surface-container-lowest/95 backdrop-blur-lg px-6 py-2 flex items-center justify-between shadow-[0_-4px_20px_rgba(74,144,226,0.08)]">
+<!-- Home Tab -->
+<button class="flex flex-col items-center gap-0.5 py-1 text-tertiary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<!-- History Tab -->
+<button class="flex flex-col items-center gap-0.5 py-1 text-tertiary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">bar_chart</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+<!-- Alerts / Medicine Tab -->
+<button class="flex flex-col items-center gap-0.5 py-1 text-tertiary hover:text-on-surface transition-colors relative" type="button">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</button>
+<!-- Profile Tab (ACTIVE) -->
+<button class="flex flex-col items-center gap-0.5 py-1 text-primary-container font-semibold transition-colors relative" type="button">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+<!-- Active Pill indicator dot -->
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+</nav>
+</div></main>
+<!-- END: MobileDeviceFrame -->
+</body></html>

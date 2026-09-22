@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>DiaCare - Sign In</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with forms & container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Config -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#2EAF8F',
+              tealDark: '#239377',
+              tealLight: '#E8F8F4',
+              cyan: '#38C7A5',
+              navy: '#0F2942',
+              slate: '#1E293B',
+              bgLight: '#F5FAFF',
+              card: '#FFFFFF',
+              border: '#E3ECF5'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif']
+          },
+          boxShadow: {
+            'teal-glow': '0 10px 25px -3px rgba(46, 175, 143, 0.35)',
+            'card-soft': '0 4px 20px -2px rgba(15, 41, 66, 0.05)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Mobile Frame and Waves -->
+<style data-purpose="custom-styling">
+    body {
+      background-color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Smooth transitions */
+    .btn-active:active {
+      transform: scale(0.98);
+    }
+    
+    /* Custom organic wave styling */
+    .wave-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 140px;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 md:p-6 select-none">
+<!-- BEGIN: MobileDeviceFrame -->
+<div class="relative w-full max-w-[390px] h-[844px] bg-[#F5FAFF] overflow-hidden flex flex-col justify-between shadow-2xl sm:rounded-[48px] border-0 sm:border-[8px] sm:border-slate-800" data-purpose="mobile-container">
+<!-- BEGIN: iOSStatusBar -->
+<div class="w-full pt-3 px-7 flex justify-between items-center z-30 select-none" data-purpose="status-bar">
+<span class="text-[14px] font-bold tracking-tight text-slate-800">9:41</span>
+<div class="flex items-center space-x-1.5 text-slate-800">
+<!-- Cellular Signal Icon -->
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.2.2-.2.51 0 .71.1.1.23.15.35.15s.26-.05.35-.15l1.83-1.83C8.42 19.34 10.13 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" opacity="0"></path>
+<rect height="5" rx="1" width="3" x="2" y="16"></rect>
+<rect height="9" rx="1" width="3" x="7" y="12"></rect>
+<rect height="13" rx="1" width="3" x="12" y="8"></rect>
+<rect height="17" rx="1" width="3" x="17" y="4"></rect>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.5 0 6.74 1.34 9.21 3.55L12 19.12 2.79 11.05C5.26 8.84 8.5 7.5 12 7.5z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="flex items-center">
+<div class="w-5 h-2.5 border-[1.5px] border-slate-800 rounded-[3px] p-0.5 flex items-center">
+<div class="h-full w-3 bg-slate-800 rounded-[1px]"></div>
+</div>
+<div class="w-0.5 h-1 bg-slate-800 rounded-r-[1px] -ml-[0.5px]"></div>
+</div>
+</div>
+</div>
+<!-- END: iOSStatusBar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 overflow-y-auto px-6 pt-2 pb-6 z-10 flex flex-col justify-between no-scrollbar" data-purpose="scrollable-content">
+<!-- Top Branding Section -->
+<div>
+<!-- BEGIN: LogoHeader -->
+<header class="text-center pt-2 pb-4" data-purpose="brand-header">
+<div class="inline-flex items-center justify-center relative mb-2">
+<!-- DiaCare Logo Emblem (Heart + Water Drop + Plus) -->
+<div class="w-20 h-20 relative flex items-center justify-center">
+<svg class="w-20 h-20" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Cyan/Teal Outer stylized heart ring -->
+<path d="M33.5 19C24.3873 19 17 26.4716 17 35.6883C17 50.8144 36.85 66.8622 47.95 75.3197C49.1667 76.2467 50.8333 76.2467 52.05 75.3197C63.15 66.8622 83 50.8144 83 35.6883C83 26.4716 75.6127 19 66.5 19C60.334 19 54.914 22.4277 52.0005 27.5C49.086 22.4277 43.666 19 33.5 19Z" stroke="#2EAF8F" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"></path>
+<!-- Inner Blue/Teal Droplet -->
+<path d="M50 33C50 33 40 46.2 40 53.6C40 59.3438 44.4772 64 50 64C55.5228 64 60 59.3438 60 53.6C60 46.2 50 33 50 33Z" fill="#26A69A" opacity="0.85"></path>
+<path d="M50 33C50 33 44 46.2 44 53.6C44 57.5 46.5 61 50 63C47 62 44 58 44 53.6C44 47.5 50 37 50 33Z" fill="#80CBC4"></path>
+<!-- Medical Cross Badge -->
+<circle cx="72" cy="38" fill="#F5FAFF" r="9"></circle>
+<circle cx="72" cy="38" fill="#38C7A5" r="8"></circle>
+<path d="M72 34V42M68 38H76" stroke="white" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+</div>
+<!-- Brand Title -->
+<h1 class="text-2xl font-extrabold text-[#0F2942] tracking-tight flex items-center justify-center">
+            Dia<span class="text-[#2EAF8F]">Care</span>
+</h1>
+<p class="text-xs font-semibold text-[#2EAF8F] tracking-wide uppercase mt-0.5">
+            Smart Care for a Healthier Tomorrow
+          </p>
+</header>
+<!-- END: LogoHeader -->
+<!-- BEGIN: WelcomeIntro -->
+<div class="text-center mt-2 mb-4">
+<h2 class="text-xl font-bold text-slate-800">Welcome Back</h2>
+<p class="text-xs text-slate-500 mt-1">Sign in to manage your diabetes care &amp; daily health</p>
+</div>
+<!-- END: WelcomeIntro -->
+<!-- BEGIN: LoginForm -->
+<form class="space-y-3.5" data-purpose="login-form" onsubmit="event.preventDefault();">
+<!-- Email / Phone Input Field -->
+<div>
+<label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5 ml-1">
+              Email or Phone Number
+            </label>
+<div class="relative flex items-center">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+<!-- Envelope Mail Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full bg-white text-slate-800 text-sm rounded-2xl pl-10 pr-4 py-3 border border-slate-200/90 focus:border-[#2EAF8F] focus:ring-2 focus:ring-[#2EAF8F]/20 transition-all outline-none shadow-sm placeholder:text-slate-400 font-medium" placeholder="e.g. anusri@email.com" type="text" value="anusri@email.com"/>
+</div>
+</div>
+<!-- Password Input Field -->
+<div>
+<label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5 ml-1">
+              Password
+            </label>
+<div class="relative flex items-center">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+<!-- Lock Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full bg-white text-slate-800 text-sm rounded-2xl pl-10 pr-11 py-3 border border-slate-200/90 focus:border-[#2EAF8F] focus:ring-2 focus:ring-[#2EAF8F]/20 transition-all outline-none shadow-sm placeholder:text-slate-400 font-medium" placeholder="Enter your password" type="password" value="••••••••••••"/>
+<!-- Toggle Password Visibility Icon -->
+<button class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Options Row: Remember Me & Forgot Password -->
+<div class="flex items-center justify-between pt-0.5 px-1 text-xs">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-[#2EAF8F] border-slate-300 focus:ring-[#2EAF8F] focus:ring-offset-0 cursor-pointer" type="checkbox"/>
+<span class="text-slate-600 font-medium text-[12px]">Remember me</span>
+</label>
+<a class="text-[#2EAF8F] font-semibold text-[12px] hover:text-[#239377] transition-colors" href="#forgot">
+              Forgot Password?
+            </a>
+</div>
+<!-- Primary Submit Button -->
+<div class="pt-2">
+<button class="btn-active w-full py-3.5 px-4 bg-[#2EAF8F] hover:bg-[#279d80] text-white font-bold text-sm rounded-2xl shadow-teal-glow flex items-center justify-center space-x-2 transition duration-150" type="submit">
+<span>Sign In</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+</div>
+</form>
+<!-- END: LoginForm -->
+<!-- BEGIN: BiometricAuthOption -->
+<div class="mt-3.5 text-center">
+<button class="inline-flex items-center justify-center space-x-2 py-2 px-3.5 rounded-xl border border-slate-200/80 bg-white/70 backdrop-blur text-xs font-semibold text-slate-700 hover:bg-white transition-all shadow-sm" type="button">
+<!-- Face ID / Fingerprint Icon -->
+<svg class="w-4 h-4 text-[#2EAF8F]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 004 11m0 0c0 1.343.197 2.64.56 3.864m1.9 3.013a10.97 10.97 0 003.54 2.123" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Sign in with Face ID or Touch ID</span>
+</button>
+</div>
+<!-- END: BiometricAuthOption -->
+</div>
+<!-- Bottom Actions & Social Logins -->
+<div class="relative z-10 pt-2">
+<!-- Divider -->
+<div class="relative flex items-center justify-center my-3">
+<div class="border-t border-slate-200 w-full"></div>
+<span class="bg-[#F5FAFF] px-3 text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+            Or continue with
+          </span>
+</div>
+<!-- Social Buttons Grid -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Google Button -->
+<button class="btn-active flex items-center justify-center space-x-2 py-2.5 px-4 bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:bg-slate-50 transition" type="button">
+<!-- Google 'G' Icon -->
+<svg class="w-4 h-4" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="text-xs font-semibold text-slate-700">Google</span>
+</button>
+<!-- Apple Button -->
+<button class="btn-active flex items-center justify-center space-x-2 py-2.5 px-4 bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:bg-slate-50 transition" type="button">
+<!-- Apple Icon -->
+<svg class="w-4 h-4 fill-current text-slate-900" viewbox="0 0 24 24">
+<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.61 1.34-.55.63-1.03 1.68-.9 2.7 1 .08 2.01-.5 2.59-1.19z"></path>
+</svg>
+<span class="text-xs font-semibold text-slate-700">Apple</span>
+</button>
+</div>
+<!-- Don't have an account link -->
+<div class="text-center mt-4">
+<p class="text-xs text-slate-500 font-medium">
+            Don't have an account? 
+            <a class="text-[#2EAF8F] font-bold hover:text-[#239377] transition-colors ml-0.5" href="#signup">
+              Sign Up
+            </a>
+</p>
+</div>
+</div>
+</div>
+<!-- END: MainContentArea -->
+<!-- BEGIN: WaveBackgroundDecoration -->
+<!-- Curved organic backdrop element matching DiaCare bottom waves -->
+<div class="wave-bg">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 390 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Soft background wave -->
+<path d="M0 60C70 20 150 70 240 45C310 25 350 40 390 30V140H0V60Z" fill="#38C7A5" fill-opacity="0.12"></path>
+<!-- Mid tone wave -->
+<path d="M0 80C90 40 180 90 270 65C330 48 365 60 390 52V140H0V80Z" fill="#2EAF8F" fill-opacity="0.2"></path>
+<!-- Foreground subtle wave -->
+<path d="M0 105C110 75 210 110 300 90C350 78 375 85 390 82V140H0V105Z" fill="#2EAF8F" fill-opacity="0.28"></path>
+</svg>
+</div>
+<!-- END: WaveBackgroundDecoration -->
+<!-- BEGIN: iOSHomeIndicator -->
+<div class="w-full pb-2 pt-1 flex justify-center items-center z-30" data-purpose="home-indicator">
+<div class="w-32 h-1 bg-slate-400/50 rounded-full"></div>
+</div>
+<!-- END: iOSHomeIndicator -->
+</div>
+<!-- END: MobileDeviceFrame -->
+</body></html>

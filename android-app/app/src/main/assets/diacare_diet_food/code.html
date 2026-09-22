@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>DiaCare - Diet &amp; Food</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#2EAF8F',
+              tealDark: '#23957A',
+              lightGreen: '#E8F8F0',
+              blue: '#4A90E2',
+              bgLight: '#F5FAFF',
+              softPurple: '#EDE8FF',
+              orange: '#FFE9D6',
+              textPrimary: '#1E293B',
+              textSecondary: '#64748B',
+              borderMuted: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom Styles for Mobile Device Preview & Micro-interactions -->
+<style data-purpose="mobile-viewport-layout">
+    body {
+      background-color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    /* iOS Scrollbar hidden for app-like feeling */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-0 sm:p-4">
+<!-- BEGIN: MobileDeviceFrame -->
+<div class="w-full max-w-[390px] h-[844px] bg-[#F5FAFF] shadow-2xl relative flex flex-col justify-between overflow-hidden rounded-[40px] border-[6px] border-slate-900 border-opacity-10 sm:border-opacity-100" data-purpose="phone-screen-container">
+<!-- BEGIN: iOSStatusBar -->
+<header class="w-full pt-3 px-7 pb-1 flex justify-between items-center text-slate-800 text-xs font-semibold select-none z-30" data-purpose="ios-status-bar">
+<span>9:41</span>
+<!-- Dynamic Island / Speaker cutout simulation -->
+<div class="w-24 h-4 bg-black rounded-full absolute left-1/2 -translate-x-1/2 top-2.5 hidden sm:block"></div>
+<div class="flex items-center space-x-1.5 text-slate-800">
+<!-- Cellular Signal Icon -->
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.957 10.957 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10c0 2.32-.72 4.47-1.95 6.25l-.62-.64C20.44 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"></path>
+<path d="M12 6c-3.31 0-6 2.69-6 6 0 1.48.54 2.83 1.43 3.88l.71-.71C7.45 14.37 7 13.23 7 12c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.23-.45 2.37-1.14 3.17l.71.71C17.46 14.83 18 13.48 18 12c0-3.31-2.69-6-6-6z"></path>
+<circle cx="12" cy="12" r="2.5"></circle>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24">
+<path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A17.88 17.88 0 0 0 12 4zm0 2.9c3.8 0 7.25 1.44 9.9 3.84L12 18.77 2.1 10.74C4.75 8.34 8.2 6.9 12 6.9z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="flex items-center">
+<div class="w-5 h-2.5 border border-slate-700 rounded-sm p-0.5 flex items-center">
+<div class="h-full w-full bg-slate-800 rounded-2xs"></div>
+</div>
+<div class="w-0.5 h-1 bg-slate-700 rounded-r-xs ml-0.5"></div>
+</div>
+</div>
+</header>
+<!-- END: iOSStatusBar -->
+<!-- BEGIN: TopNavigationBar -->
+<nav aria-label="Page Header" class="flex items-center px-5 py-2 z-20" data-purpose="top-navigation">
+<button aria-label="Go Back" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-200/50 active:scale-95 transition-all -ml-1 text-slate-700" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-lg font-bold text-slate-800 ml-2 tracking-tight">Diet &amp; Food</h1>
+</nav>
+<!-- END: TopNavigationBar -->
+<!-- BEGIN: ScrollableMainContent -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-5 pt-2 pb-6 space-y-5" data-purpose="main-content-scroll">
+<!-- BEGIN: HeroPromoBanner -->
+<section class="bg-[#E8F8F0] rounded-3xl p-4 flex items-center justify-between shadow-sm relative overflow-hidden" data-purpose="hero-promo-card">
+<div class="max-w-[185px] z-10">
+<h2 class="text-base font-bold text-slate-800 leading-snug">
+            Healthy food<br/>Better control
+          </h2>
+<p class="text-xs text-slate-600 mt-1 font-normal leading-relaxed">
+            Choose meals that keep your sugar in check.
+          </p>
+</div>
+<!-- Meal Bowl Image Representation -->
+<div class="relative w-24 h-24 flex-shrink-0">
+<div class="w-24 h-24 rounded-full overflow-hidden shadow-md border-2 border-white bg-emerald-50">
+<img alt="Fresh healthy salad bowl with nutritious ingredients" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHGWSYCbV0U9zBWANaPSEOEDi0YATCr1an6YTIkbENB7p24sptI3l8VVImqyPpXXFK6k9jGZmy40T47PFPuvfR_tG4eDMZ3ZFQxCVpzcrYCOgd4RTfAUoXzfqG0KZiekwry2a-zXCoSFOh_Sq0xcmT8ZrtqKjDuPY5rigMyJSMatFX07RAJQFoNAnetkzduhTBIdOqQhCmKbWpdgsDVEOXqNPLFgCaf7wms07MxJzT954lSIY5bASw"/>
+</div>
+</div>
+</section>
+<!-- END: HeroPromoBanner -->
+<!-- BEGIN: TodaysMealsSection -->
+<section data-purpose="todays-meals-list">
+<!-- Section Header -->
+<div class="flex items-center justify-between mb-3 px-1">
+<h2 class="text-sm font-bold text-slate-800">Today's Meals</h2>
+<button class="text-xs font-semibold text-brand-teal hover:text-brand-tealDark active:scale-95 transition-all" type="button">
+            Edit
+          </button>
+</div>
+<!-- Meal Items List -->
+<div class="space-y-3">
+<!-- Meal 1: Breakfast (Checked) -->
+<article class="bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100/80 transition-all hover:border-slate-200" data-purpose="meal-card-breakfast">
+<div class="flex items-center space-x-3.5">
+<!-- Dish Thumbnail -->
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-amber-50 border border-slate-100 shadow-inner">
+<img alt="Oats with nuts and fruits" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdxDNnM8E34Dsegc9-D5oScHWVnnL065ISAfnKvSx9bEEEIAXIVL05JCIIO4B8ZBCapGvYesb-SkxlShEJuMXMI0N87KZ_YuLIufRDe8fVSma2W1iswbKI8iEVdauGaP74Gn4i0mU21T4N3cV4O5DzEfXC9qzEwZsIrpBxib6lzHVUr40hTuRH8u0V_hRr1ZzOPR9v8EIpSjb4WWh2SY-dFbgxidNlnmBnQOoz0KxbCuu7s1FQ3ToV"/>
+</div>
+<div>
+<h3 class="text-xs font-bold text-slate-800">Breakfast</h3>
+<p class="text-[11px] text-slate-500 font-medium mt-0.5">Oats + Nuts + Fruits</p>
+</div>
+</div>
+<!-- Checkmark Indicator -->
+<div aria-label="Completed meal" class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+<svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+</article>
+<!-- Meal 2: Lunch (Checked) -->
+<article class="bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100/80 transition-all hover:border-slate-200" data-purpose="meal-card-lunch">
+<div class="flex items-center space-x-3.5">
+<!-- Dish Thumbnail -->
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-emerald-50 border border-slate-100 shadow-inner">
+<img alt="Brown rice with fresh vegetables" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK69B28Wkh8YNDZuv5Zhgnp0fMdesfSavuWFUTA4G0Zl8hZNpg18NtEPpGQC-1kYgQbv_SbTt8tQOr8FAT7ePNRrnPwIGNFLaCzR8AZ3a7OyBIWZwZKukxHgvzqCcLZ8WgAboZxpKMfGEGGfq8PFqvJ-95vcAfEDg1RWz_i_P4Z7_-jsBgQFpHYUQSud_GA1edpUYYLM3wo-XDZS2nFQHUHp6Z5E-uFN3qSyr5c7FAJAcojoMneWdS"/>
+</div>
+<div>
+<h3 class="text-xs font-bold text-slate-800">Lunch</h3>
+<p class="text-[11px] text-slate-500 font-medium mt-0.5">Brown Rice + Vegetables</p>
+</div>
+</div>
+<!-- Checkmark Indicator -->
+<div aria-label="Completed meal" class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+<svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+</article>
+<!-- Meal 3: Dinner (Pending) -->
+<article class="bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100/80 transition-all hover:border-slate-200" data-purpose="meal-card-dinner">
+<div class="flex items-center space-x-3.5">
+<!-- Dish Thumbnail -->
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-orange-50 border border-slate-100 shadow-inner">
+<img alt="Grilled chicken with green salad" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARkwO0ZlotHO9LnVn5QMtvdQonq5InoiAFnR3X4twR5RrvKRrb-UjCZtfuYvxNI2kB8M6d5vRr4IQ1-vltPK2CeQGKqRkWQTGNtKOalAVMy5pQk7u-BIDatI_A6iniuuZc_CRCO4BckhW4hX4zH96WgW_IuhqpdyX8YA3CzLXY1Xmy4m5NmOhXw1TTXcOJZ0e8BQyKHJVNhXCux9mfShkr6tBKA_DFfu8dtB0yIFgJiIPtL_ibfNef"/>
+</div>
+<div>
+<h3 class="text-xs font-bold text-slate-800">Dinner</h3>
+<p class="text-[11px] text-slate-500 font-medium mt-0.5">Grilled Chicken + Salad</p>
+</div>
+</div>
+<!-- Pending Unchecked Circle -->
+<div aria-label="Pending meal" class="w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div>
+</article>
+</div>
+</section>
+<!-- END: TodaysMealsSection -->
+<!-- BEGIN: AISuggestionsSection -->
+<section class="pt-1" data-purpose="ai-suggestions-container">
+<h2 class="text-sm font-bold text-slate-800 mb-2.5 px-1">AI Suggestions</h2>
+<div class="bg-[#EFF8FA] rounded-2xl p-4 border border-[#DCF1F5] flex items-start space-x-3.5 shadow-sm">
+<!-- Lightbulb Icon Container -->
+<div class="w-9 h-9 rounded-full bg-cyan-100/80 flex items-center justify-center flex-shrink-0 text-brand-teal">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Suggestion Text -->
+<p class="text-xs text-slate-700 leading-relaxed font-normal pt-0.5">
+            Try more fibre-rich foods like vegetables, whole grains and nuts. Avoid sugary and processed foods.
+          </p>
+</div>
+</section>
+<!-- END: AISuggestionsSection -->
+</main>
+<!-- END: ScrollableMainContent -->
+<!-- BEGIN: BottomNavigationBar -->
+<nav aria-label="Main Navigation" class="bg-white border-t border-slate-100 px-6 py-2 pb-5 flex justify-between items-center z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]" data-purpose="bottom-nav">
+<!-- Home Tab -->
+<a aria-label="Home" class="flex flex-col items-center group py-1" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-brand-teal transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-brand-teal transition-colors">Home</span>
+</a>
+<!-- History Tab -->
+<a aria-label="History" class="flex flex-col items-center group py-1" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-brand-teal transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-brand-teal transition-colors">History</span>
+</a>
+<!-- Alerts Tab -->
+<a aria-label="Alerts" class="flex flex-col items-center group py-1" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-brand-teal transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-brand-teal transition-colors">Alerts</span>
+</a>
+<!-- Profile Tab -->
+<a aria-label="Profile" class="flex flex-col items-center group py-1" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-brand-teal transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-brand-teal transition-colors">Profile</span>
+</a>
+</nav>
+<!-- END: BottomNavigationBar -->
+<!-- BEGIN: iOSHomeIndicator -->
+<div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-300 rounded-full pointer-events-none" data-purpose="home-indicator"></div>
+<!-- END: iOSHomeIndicator -->
+</div>
+<!-- END: MobileDeviceFrame -->
+</body></html>

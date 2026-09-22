@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>DiaCare - Blood Sugar Tracker</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#2EAF8F',
+              tealLight: '#E8F8F4',
+              tealSoft: '#D7F3EC',
+              blue: '#4A90E2',
+              bg: '#F5FAFF',
+              badgeGreen: '#EBF8F0',
+              badgeText: '#27AE60',
+              textDark: '#1E293B',
+              textMuted: '#64748B',
+              cardBg: '#FFFFFF'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Font: Plus Jakarta Sans for refined mobile typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #E2E8F0;
+    }
+  </style>
+<style data-purpose="chart-styles">
+    /* Subtle custom styles for SVG chart aesthetics */
+    .chart-line {
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      fill: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 text-slate-800 antialiased selection:bg-brand-teal selection:text-white">
+<!-- BEGIN: MobileDeviceFrame -->
+<!-- iPhone 15 Pro scaled viewport container -->
+<main class="w-full max-w-[393px] h-[852px] bg-brand-bg relative overflow-hidden flex flex-col shadow-2xl rounded-none sm:rounded-[48px] border-0 sm:border-[8px] sm:border-slate-800">
+<!-- BEGIN: iOSStatusBar -->
+<div class="w-full pt-3 px-7 flex justify-between items-center z-30 shrink-0 text-slate-900" data-purpose="status-bar">
+<span class="text-[14px] font-semibold tracking-tight">9:41</span>
+<div class="flex items-center space-x-2">
+<!-- Cellular Signal Icon -->
+<svg class="w-4 h-3.5" fill="currentColor" viewbox="0 0 17 11">
+<rect height="3" rx="0.75" width="2.5" x="0" y="8"></rect>
+<rect height="5.5" rx="0.75" width="2.5" x="4.5" y="5.5"></rect>
+<rect height="8" rx="0.75" width="2.5" x="9" y="3"></rect>
+<rect height="11" rx="0.75" width="2.5" x="13.5" y="0"></rect>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-4 h-3.5" fill="currentColor" viewbox="0 0 16 12">
+<path d="M8 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-4.24-4.24a6 6 0 0 1 8.48 0 .75.75 0 0 0 1.06-1.06 7.5 7.5 0 0 0-10.6 0 .75.75 0 1 0 1.06 1.06zm-2.83-2.83a10 10 0 0 1 14.14 0 .75.75 0 0 0 1.06-1.06 11.5 11.5 0 0 0-16.26 0 .75.75 0 1 0 1.06 1.06z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="w-5 h-2.5 border border-slate-900 rounded-[3px] p-0.5 flex items-center">
+<div class="h-full w-3.5 bg-slate-900 rounded-[1px]"></div>
+</div>
+</div>
+</div>
+<!-- END: iOSStatusBar -->
+<!-- BEGIN: TopNavigationHeader -->
+<header class="px-5 pt-3 pb-2 flex items-center shrink-0 z-20" data-purpose="screen-header">
+<button aria-label="Go Back" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-800 hover:bg-white/80 active:scale-95 transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-[19px] font-bold text-slate-800 ml-2 tracking-tight">Blood Sugar</h1>
+</header>
+<!-- END: TopNavigationHeader -->
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto px-5 pt-2 pb-24 space-y-4 no-scrollbar">
+<!-- BEGIN: HeroCard -->
+<!-- Current Blood Sugar Primary Card -->
+<section class="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(74,144,226,0.06)] border border-slate-100/80" data-purpose="current-reading-card">
+<div class="flex items-start justify-between">
+<!-- Blood Drop Icon & Title Details -->
+<div class="flex items-center space-x-3.5">
+<div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-red-500 shadow-sm">
+<!-- Blood Drop SVG Icon -->
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+</svg>
+</div>
+<div>
+<p class="text-[12px] font-semibold text-slate-400 uppercase tracking-wider">Today's Reading</p>
+<div class="flex items-baseline space-x-1.5">
+<span class="text-[34px] font-extrabold text-slate-800 tracking-tight leading-none">102</span>
+<span class="text-[13px] font-medium text-slate-400">mg/dL</span>
+</div>
+<p class="text-[12px] font-medium text-slate-400 mt-0.5">Fasting</p>
+</div>
+</div>
+<!-- Status Pill Badge -->
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[12px] font-bold bg-brand-badgeGreen text-brand-badgeText">
+            Normal
+          </span>
+</div>
+<!-- Divider Line -->
+<hr class="my-4 border-slate-100"/>
+<!-- Secondary Metrics Row -->
+<div class="grid grid-cols-2 divide-x divide-slate-100">
+<div class="pr-3">
+<span class="text-[11px] font-medium text-slate-400 block">After Meal</span>
+<span class="text-[15px] font-bold text-slate-700">148 <span class="text-[11px] font-normal text-slate-400">mg/dL</span></span>
+</div>
+<div class="pl-5">
+<span class="text-[11px] font-medium text-slate-400 block">Time</span>
+<span class="text-[15px] font-bold text-slate-700">2:00 PM</span>
+</div>
+</div>
+</section>
+<!-- END: HeroCard -->
+<!-- BEGIN: AddReadingCTA -->
+<!-- Primary Action Button -->
+<button class="w-full h-[52px] bg-brand-teal hover:bg-[#269b7f] active:scale-[0.99] transition-all rounded-[18px] text-white font-semibold text-[15px] flex items-center justify-center space-x-1.5 shadow-[0_8px_20px_rgba(46,175,143,0.3)]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Add Reading</span>
+</button>
+<!-- END: AddReadingCTA -->
+<!-- BEGIN: AnalyticsChartCard -->
+<!-- 7-Day Trend Line Chart -->
+<section class="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(74,144,226,0.06)] border border-slate-100/80" data-purpose="history-trend-card">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[15px] font-bold text-slate-800">Last 7 Days</h2>
+</div>
+<!-- SVG Chart Container -->
+<div class="relative w-full h-[190px]">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 310 160">
+<!-- Grid Lines & Y-Axis Labels -->
+<!-- Value: 250 -->
+<text fill="#94A3B8" font-size="10" font-weight="500" x="0" y="16">250</text>
+<line stroke="#F1F5F9" stroke-dasharray="3 3" stroke-width="1" x1="28" x2="310" y1="13" y2="13"></line>
+<!-- Value: 180 -->
+<text fill="#94A3B8" font-size="10" font-weight="500" x="0" y="56">180</text>
+<line stroke="#F1F5F9" stroke-dasharray="3 3" stroke-width="1" x1="28" x2="310" y1="53" y2="53"></line>
+<!-- Value: 110 -->
+<text fill="#94A3B8" font-size="10" font-weight="500" x="0" y="96">110</text>
+<line stroke="#F1F5F9" stroke-dasharray="3 3" stroke-width="1" x1="28" x2="310" y1="93" y2="93"></line>
+<!-- Value: 40 -->
+<text fill="#94A3B8" font-size="10" font-weight="500" x="0" y="136">40</text>
+<line stroke="#F1F5F9" stroke-width="1" x1="28" x2="310" y1="133" y2="133"></line>
+<!-- X-Coordinates for Days: Mon(40), Tue(82), Wed(124), Thu(166), Fri(208), Sat(250), Sun(292) -->
+<!-- After Meal Trend (Teal Line) -->
+<!-- Coordinates: (40,58) -> (82,72) -> (124,52) -> (166,60) -> (208,42) -> (250,56) -> (292,48) -->
+<path class="chart-line" d="M 40 58 L 82 72 L 124 52 L 166 60 L 208 42 L 250 56 L 292 48" stroke="#2EAF8F" stroke-width="2.2"></path>
+<!-- Teal Point Markers -->
+<circle cx="40" cy="58" fill="#2EAF8F" r="3"></circle>
+<circle cx="82" cy="72" fill="#2EAF8F" r="3"></circle>
+<circle cx="124" cy="52" fill="#FFFFFF" r="3.5" stroke="#2EAF8F" stroke-width="2"></circle>
+<circle cx="166" cy="60" fill="#2EAF8F" r="3"></circle>
+<circle cx="208" cy="42" fill="#FFFFFF" r="3.5" stroke="#2EAF8F" stroke-width="2"></circle>
+<circle cx="250" cy="56" fill="#2EAF8F" r="3"></circle>
+<circle cx="292" cy="48" fill="#2EAF8F" r="3"></circle>
+<!-- Fasting Trend (Blue Line) -->
+<!-- Coordinates: (40,94) -> (82,92) -> (124,78) -> (166,88) -> (208,82) -> (250,96) -> (292,90) -->
+<path class="chart-line" d="M 40 94 L 82 92 L 124 78 L 166 88 L 208 82 L 250 96 L 292 90" stroke="#4A90E2" stroke-width="2.2"></path>
+<!-- Blue Point Markers -->
+<circle cx="40" cy="94" fill="#4A90E2" r="3"></circle>
+<circle cx="82" cy="92" fill="#4A90E2" r="3"></circle>
+<circle cx="124" cy="78" fill="#FFFFFF" r="3.5" stroke="#4A90E2" stroke-width="2"></circle>
+<circle cx="166" cy="88" fill="#4A90E2" r="3"></circle>
+<circle cx="208" cy="82" fill="#FFFFFF" r="3.5" stroke="#4A90E2" stroke-width="2"></circle>
+<circle cx="250" cy="96" fill="#4A90E2" r="3"></circle>
+<circle cx="292" cy="90" fill="#4A90E2" r="3"></circle>
+<!-- X-Axis Labels -->
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="40" y="152">Mon</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="82" y="152">Tue</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="124" y="152">Wed</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="166" y="152">Thu</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="208" y="152">Fri</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="250" y="152">Sat</text>
+<text fill="#94A3B8" font-size="9" font-weight="500" text-anchor="middle" x="292" y="152">Sun</text>
+</svg>
+</div>
+<!-- Chart Legend Indicator -->
+<div class="flex items-center justify-center space-x-6 mt-3 pt-2 border-t border-slate-50">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-blue ring-2 ring-blue-100"></span>
+<span class="text-[12px] font-medium text-slate-500">Fasting</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-teal ring-2 ring-emerald-100"></span>
+<span class="text-[12px] font-medium text-slate-500">After Meal</span>
+</div>
+</div>
+</section>
+<!-- END: AnalyticsChartCard -->
+</div>
+<!-- BEGIN: BottomNavigation -->
+<!-- Floating App Navigation Tabbar -->
+<nav class="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 py-2.5 flex items-center justify-between z-30" data-purpose="bottom-tab-bar">
+<!-- Tab 1: Home -->
+<button class="flex flex-col items-center justify-center space-y-1 group w-12 py-1 text-slate-400 hover:text-slate-600 transition-colors">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-semibold tracking-tight">Home</span>
+</button>
+<!-- Tab 2: History (Active) -->
+<button class="flex flex-col items-center justify-center space-y-1 group w-12 py-1 text-brand-teal">
+<div class="w-8 h-8 rounded-full bg-brand-teal flex items-center justify-center text-white shadow-sm shadow-teal-500/30">
+<svg class="w-4 h-4 stroke-[2.2]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[10px] font-bold tracking-tight">History</span>
+</button>
+<!-- Tab 3: Alerts -->
+<button class="flex flex-col items-center justify-center space-y-1 group w-12 py-1 text-slate-400 hover:text-slate-600 transition-colors">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-semibold tracking-tight">Alerts</span>
+</button>
+<!-- Tab 4: Profile -->
+<button class="flex flex-col items-center justify-center space-y-1 group w-12 py-1 text-slate-400 hover:text-slate-600 transition-colors">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-semibold tracking-tight">Profile</span>
+</button>
+</nav>
+<!-- END: BottomNavigation -->
+<!-- BEGIN: iOSHomeIndicator -->
+<div class="absolute bottom-1.5 inset-x-0 flex justify-center pointer-events-none z-40">
+<div class="w-32 h-1 bg-slate-300 rounded-full"></div>
+</div>
+<!-- END: iOSHomeIndicator -->
+</main>
+<!-- END: MobileDeviceFrame -->
+</body></html>
